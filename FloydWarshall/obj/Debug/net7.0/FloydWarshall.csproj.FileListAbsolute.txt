@@ -1,0 +1,15 @@
+D:\Internet_Explorer\_KPI\FloydWarshall\FloydWarshall\bin\Debug\net7.0\FloydWarshall.exe
+D:\Internet_Explorer\_KPI\FloydWarshall\FloydWarshall\bin\Debug\net7.0\FloydWarshall.deps.json
+D:\Internet_Explorer\_KPI\FloydWarshall\FloydWarshall\bin\Debug\net7.0\FloydWarshall.runtimeconfig.json
+D:\Internet_Explorer\_KPI\FloydWarshall\FloydWarshall\bin\Debug\net7.0\FloydWarshall.dll
+D:\Internet_Explorer\_KPI\FloydWarshall\FloydWarshall\bin\Debug\net7.0\FloydWarshall.pdb
+D:\Internet_Explorer\_KPI\FloydWarshall\FloydWarshall\obj\Debug\net7.0\FloydWarshall.csproj.AssemblyReference.cache
+D:\Internet_Explorer\_KPI\FloydWarshall\FloydWarshall\obj\Debug\net7.0\FloydWarshall.GeneratedMSBuildEditorConfig.editorconfig
+D:\Internet_Explorer\_KPI\FloydWarshall\FloydWarshall\obj\Debug\net7.0\FloydWarshall.AssemblyInfoInputs.cache
+D:\Internet_Explorer\_KPI\FloydWarshall\FloydWarshall\obj\Debug\net7.0\FloydWarshall.AssemblyInfo.cs
+D:\Internet_Explorer\_KPI\FloydWarshall\FloydWarshall\obj\Debug\net7.0\FloydWarshall.csproj.CoreCompileInputs.cache
+D:\Internet_Explorer\_KPI\FloydWarshall\FloydWarshall\obj\Debug\net7.0\FloydWarshall.dll
+D:\Internet_Explorer\_KPI\FloydWarshall\FloydWarshall\obj\Debug\net7.0\refint\FloydWarshall.dll
+D:\Internet_Explorer\_KPI\FloydWarshall\FloydWarshall\obj\Debug\net7.0\FloydWarshall.pdb
+D:\Internet_Explorer\_KPI\FloydWarshall\FloydWarshall\obj\Debug\net7.0\FloydWarshall.genruntimeconfig.cache
+D:\Internet_Explorer\_KPI\FloydWarshall\FloydWarshall\obj\Debug\net7.0\ref\FloydWarshall.dll

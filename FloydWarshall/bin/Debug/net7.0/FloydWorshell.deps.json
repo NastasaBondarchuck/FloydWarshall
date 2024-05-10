@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "FloydWorshell/1.0.0": {
+        "runtime": {
+          "FloydWorshell.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FloydWorshell/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

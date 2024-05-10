@@ -1,0 +1,15 @@
+D:\Internet_Explorer\_KPI\FloydWorshell\FloydWorshell\bin\Debug\net7.0\FloydWorshell.exe
+D:\Internet_Explorer\_KPI\FloydWorshell\FloydWorshell\bin\Debug\net7.0\FloydWorshell.deps.json
+D:\Internet_Explorer\_KPI\FloydWorshell\FloydWorshell\bin\Debug\net7.0\FloydWorshell.runtimeconfig.json
+D:\Internet_Explorer\_KPI\FloydWorshell\FloydWorshell\bin\Debug\net7.0\FloydWorshell.dll
+D:\Internet_Explorer\_KPI\FloydWorshell\FloydWorshell\bin\Debug\net7.0\FloydWorshell.pdb
+D:\Internet_Explorer\_KPI\FloydWorshell\FloydWorshell\obj\Debug\net7.0\FloydWorshell.csproj.AssemblyReference.cache
+D:\Internet_Explorer\_KPI\FloydWorshell\FloydWorshell\obj\Debug\net7.0\FloydWorshell.GeneratedMSBuildEditorConfig.editorconfig
+D:\Internet_Explorer\_KPI\FloydWorshell\FloydWorshell\obj\Debug\net7.0\FloydWorshell.AssemblyInfoInputs.cache
+D:\Internet_Explorer\_KPI\FloydWorshell\FloydWorshell\obj\Debug\net7.0\FloydWorshell.AssemblyInfo.cs
+D:\Internet_Explorer\_KPI\FloydWorshell\FloydWorshell\obj\Debug\net7.0\FloydWorshell.csproj.CoreCompileInputs.cache
+D:\Internet_Explorer\_KPI\FloydWorshell\FloydWorshell\obj\Debug\net7.0\FloydWorshell.dll
+D:\Internet_Explorer\_KPI\FloydWorshell\FloydWorshell\obj\Debug\net7.0\refint\FloydWorshell.dll
+D:\Internet_Explorer\_KPI\FloydWorshell\FloydWorshell\obj\Debug\net7.0\FloydWorshell.pdb
+D:\Internet_Explorer\_KPI\FloydWorshell\FloydWorshell\obj\Debug\net7.0\FloydWorshell.genruntimeconfig.cache
+D:\Internet_Explorer\_KPI\FloydWorshell\FloydWorshell\obj\Debug\net7.0\ref\FloydWorshell.dll
