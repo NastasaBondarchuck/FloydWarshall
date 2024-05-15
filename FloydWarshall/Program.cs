@@ -7,46 +7,63 @@ class FloydWarshall
         Console.Write("Enter the size of the matrix: ");
         int size = int.Parse(Console.ReadLine()!);
 
-        double[,] graph = GenerateRandomGraph(size);
+        double[,] graph = GenerateRandomGraph(size);            
         PrintMatrix(graph);
+
+        Console.WriteLine($"\nMaximum processors count: {Environment.ProcessorCount}");
         
-        int[,] originalPaths = CreatePathMatrix(graph);
-        Console.WriteLine("\nOriginal algorithm of Floyd-Warshall:");
-        double[,] dist = new double[size, size];
-        Array.Copy(graph, dist, graph.Length);
-        Stopwatch originalWatch = Stopwatch.StartNew();
-        double[,] originalResult = FloydWarshallOriginal(dist, originalPaths);
-        originalWatch.Stop();
-        PrintMatrix(originalResult);
-        Console.WriteLine("\nPaths:");
-        PrintAllPaths(originalPaths);
+        try
+        {
+            Console.WriteLine("\nCalculating...");
+            
+            int[,] originalPaths = CreatePathMatrix(graph);
+            double[,] dist = new double[size, size];
+            Array.Copy(graph, dist, graph.Length);
+            Stopwatch originalWatch = Stopwatch.StartNew();
+            double[,] originalResult = FloydWarshallOriginal(dist, originalPaths);
+            originalWatch.Stop();
+            Console.WriteLine("\nOriginal algorithm of Floyd-Warshall: " +
+                              "Success");
+            PrintMatrix(originalResult);
+            Console.WriteLine("\nPaths:");
+            PrintAllPaths(originalPaths);
+            
+            int[,] parallelPaths = CreatePathMatrix(graph);
+            dist = new double[size, size];
+            Array.Copy(graph, dist, graph.Length);
+            Stopwatch parallelWatch = Stopwatch.StartNew();
+            double[,] parallelResult = FloydWarshallParallel(dist, parallelPaths);
 
-        int[,] parallelPaths = CreatePathMatrix(graph);
-        Console.WriteLine("\nParallel algorithm of Floyd-Warshall (by splitting the matrix into rows):");
-        dist = new double[size, size];
-        Array.Copy(graph, dist, graph.Length);
-        Stopwatch parallelWatch = Stopwatch.StartNew();
-        double[,] parallelResult = FloydWarshallParallel(dist, parallelPaths);
-        parallelWatch.Stop();
-        PrintMatrix(parallelResult);
-        Console.WriteLine("\nPaths:");
-        PrintAllPaths(parallelPaths);
+            parallelWatch.Stop();
+            Console.WriteLine("\nParallel algorithm of Floyd-Warshall (by splitting the matrix into rows): " +
+                              "Success");
+            PrintMatrix(parallelResult);
+            Console.WriteLine("\nPaths:");
+            PrintAllPaths(parallelPaths);
+            
+            Console.WriteLine("\nComparing results between lengths:");
+            CompareLengthResults(originalResult, parallelResult);
+            Console.WriteLine("\nComparing results between paths:");
+            ComparePathResults(originalPaths, parallelPaths);
 
-        Console.WriteLine("\nComparing results between lengths:");
-        CompareLengthResults(originalResult, parallelResult);
-        Console.WriteLine("\nComparing results between paths:");
-        ComparePathResults(originalPaths, parallelPaths);
-
-        Console.WriteLine("\nExecution time:");
-        Console.WriteLine("Original algorithm: " + originalWatch.Elapsed + ".");
-        Console.WriteLine("Parallel algorithm: " + parallelWatch.Elapsed + ".");
-
+            Console.WriteLine("\nExecution time:");
+            Console.WriteLine("Original algorithm: " + originalWatch.Elapsed + ".");
+            Console.WriteLine("Parallel algorithm: " + parallelWatch.Elapsed + ".");
+            
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("\nGraph has a negative cycle.\n");
+            throw;
+        }
         Console.Read();
     }
+
     static double[,] GenerateRandomGraph(int size)
     {
         Random rand = new Random();
         double[,] graph = new double[size, size];
+        int infinityCounter = 0;
         for (int i = 0; i < size; i++)
         {
             for (int j = 0; j < size; j++)
@@ -57,16 +74,18 @@ class FloydWarshall
                 else if (currentRand <= -5)
                 {
                     graph[i, j] = double.PositiveInfinity;
+                    infinityCounter++;
                 }
                 else
                 {
-                    graph[i, j] = rand.Next(100);
+                    graph[i, j] = rand.Next(10);
                 }
             }
         }
-
+        Console.WriteLine($"\nCount of infinities: {infinityCounter}\n");
         return graph;
     }
+
     static int[,] CreatePathMatrix(double[,] graph)
     {
         int size = graph.GetLength(0);
@@ -90,9 +109,15 @@ class FloydWarshall
         {
             for (int i = 0; i < size; i++)
             {
+                if (double.IsPositiveInfinity(dist[i, k])) continue;
                 for (int j = 0; j < size; j++)
                 {
-                    if (!double.IsPositiveInfinity(dist[i, k]) && !double.IsPositiveInfinity(dist[k, j]) &&
+                    if (i == j && dist[i, k] + dist[k, j] < 0)
+                    {
+                        throw new Exception("Negative Cycle Exception");
+                    }
+
+                    if (!double.IsPositiveInfinity(dist[k, j]) &&
                         dist[i, k] + dist[k, j] < dist[i, j])
                     {
                         dist[i, j] = dist[i, k] + dist[k, j];
@@ -109,12 +134,21 @@ class FloydWarshall
     {
         int size = dist.GetLength(0);
 
+        ParallelOptions options = new ParallelOptions();
+        options.MaxDegreeOfParallelism = 8;
+        
         for (int k = 0; k < size; k++)
         {
-            Parallel.For(0, size, i =>
+            Parallel.For(0, size, options, i =>
             {
+                if (double.IsPositiveInfinity(dist[i, k])) return;
                 for (int j = 0; j < size; j++)
                 {
+                    if (i == j && dist[i, k] + dist[k, j] < 0)
+                    {
+                        throw new Exception("Negative Cycle Exception");
+                    }
+
                     if (!double.IsPositiveInfinity(dist[i, k]) && !double.IsPositiveInfinity(dist[k, j]) &&
                         dist[i, k] + dist[k, j] < dist[i, j])
                     {
@@ -122,10 +156,9 @@ class FloydWarshall
                         pathMatrix[i, j] = pathMatrix[i, k];
                     }
                 }
+
             });
         }
-
-
         return dist;
     }
 
